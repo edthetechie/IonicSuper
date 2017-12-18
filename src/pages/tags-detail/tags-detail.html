@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{ 'FORECASTS_LIST' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()" placeholder="Filter forecasts" *ngIf="filteredItems?.length > 0"></ion-searchbar>
+  <div class="spinner-container" *ngIf="searching">
+    <ion-spinner></ion-spinner>
+  </div>
+  <ion-list>
+    <ion-item-divider text-wrap color="light"><span float-end *ngIf="filteredItems?.length > 0">Found: {{filteredItems?.length}}</span>{{ pagetitle }}</ion-item-divider>
+    <ion-item text-wrap no-lines *ngIf="filteredItems == 0">
+      No forecasts found
+    </ion-item>
+    <ion-item-sliding *ngFor="let item of filteredItems" text-wrap>
+      <button ion-item (click)="openUrl(item.URL)">
+        <h2 [innerHTML]="item.TITLE"></h2>
+      </button>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+    <ion-col col-6> 
+        <button ion-button color="primary" class="footer-button" (click)="showSummary('tags')">
+          Summary
+        </button>
+    </ion-col>
+    <ion-col col-6>
+        <button ion-button color="primary" class="footer-button" (click)="doExport(pagetitle)">
+          Export
+        </button>  
+    </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

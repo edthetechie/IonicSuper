@@ -1,7 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Camera } from '@ionic-native/camera';
-import { IonicPage, NavController, ViewController } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, ViewController, ToastController, LoadingController } from 'ionic-angular';
+
+import { SourceProvider } from '../../providers/providers';
+import { SourcesPage } from '../pages';
 
 @IonicPage()
 @Component({
@@ -9,62 +10,28 @@ import { IonicPage, NavController, ViewController } from 'ionic-angular';
   templateUrl: 'item-create.html'
 })
 export class ItemCreatePage {
-  @ViewChild('fileInput') fileInput;
 
-  isReadyToSave: boolean;
+  sourceAddError: any;
+  loading: any;
 
-  item: any;
+  addsource: { omniSource: string, tag: string } = {
+    omniSource: '@edthetechie',
+    tag: 'personal'
+  };
 
-  form: FormGroup;
-
-  constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder, public camera: Camera) {
-    this.form = formBuilder.group({
-      profilePic: [''],
-      name: ['', Validators.required],
-      about: ['']
-    });
-
-    // Watch the form for changes, and
-    this.form.valueChanges.subscribe((v) => {
-      this.isReadyToSave = this.form.valid;
-    });
+  constructor(
+    public navCtrl: NavController, 
+    public viewCtrl: ViewController, 
+    public toastCtrl: ToastController,
+    public source: SourceProvider,
+    public loadingController: LoadingController
+  ) {
+      this.loading = this.loadingController.create();
   }
 
   ionViewDidLoad() {
 
   }
-
-  getPicture() {
-    if (Camera['installed']()) {
-      this.camera.getPicture({
-        destinationType: this.camera.DestinationType.DATA_URL,
-        targetWidth: 96,
-        targetHeight: 96
-      }).then((data) => {
-        this.form.patchValue({ 'profilePic': 'data:image/jpg;base64,' + data });
-      }, (err) => {
-        alert('Unable to take photo');
-      })
-    } else {
-      this.fileInput.nativeElement.click();
-    }
-  }
-
-  processWebImage(event) {
-    let reader = new FileReader();
-    reader.onload = (readerEvent) => {
-
-      let imageData = (readerEvent.target as any).result;
-      this.form.patchValue({ 'profilePic': imageData });
-    };
-
-    reader.readAsDataURL(event.target.files[0]);
-  }
-
-  getProfileImageStyle() {
-    return 'url(' + this.form.controls['profilePic'].value + ')'
-  }
-
   /**
    * The user cancelled, so we dismiss without sending data back.
    */
@@ -77,7 +44,24 @@ export class ItemCreatePage {
    * back to the presenter.
    */
   done() {
-    if (!this.form.valid) { return; }
-    this.viewCtrl.dismiss(this.form.value);
+    this.loading.present();
+    this.source.add(this.addsource).subscribe((resp) => {
+      //this.user.login(this.account);
+      this.navCtrl.push(SourcesPage);
+      this.loading.dismiss();
+    }, (err) => {
+      this.loading.dismiss();
+      // this.navCtrl.push(MainPage);
+
+      // Unable to sign up
+      let toast = this.toastCtrl.create({
+        message: this.sourceAddError,
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+    });
+    // console.log(this.form.controls);
+    // this.navCtrl.push(SourcesPage);
   }
 }

@@ -1,22 +1,23 @@
 <ion-header>
-
-  <ion-navbar>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
     <ion-title>{{ 'SEARCH_TITLE' | translate }}</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content>
-  <ion-searchbar (ionInput)="getItems($event)" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"></ion-searchbar>
+  <form (submit)="doSearch()">
+    <ion-searchbar  [(ngModel)]="search.q" name="q" placeholder="Type keywords and press enter"></ion-searchbar>
+  </form>
   <ion-list>
-    <button ion-item (click)="openItem(item)" *ngFor="let item of currentItems">
-      <ion-avatar item-start>
-        <img [src]="item.profilePic" />
-      </ion-avatar>
-      <h2>{{item.name}}</h2>
-      <p>{{item.about}}</p>
-      <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>
-    </button>
+    <ion-item text-wrap no-lines *ngIf="currentItems == 0">
+      No forecasts found
+    </ion-item>    
+    <ion-item-divider text-wrap color="light" *ngIf="currentItems?.length > 0">Found: {{currentItems?.length}}</ion-item-divider>
+    <ion-item-sliding *ngFor="let item of currentItems" text-wrap no-lines>
+      <button ion-item (click)="openItem(item.URL)">
+        <h2>{{item.TITLE}}</h2>
+      </button>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>

@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar hideBackButton="true">
     <ion-title>{{ 'SIGNUP_TITLE' | translate }}</ion-title>
   </ion-navbar>
 
@@ -12,10 +12,17 @@
     <ion-list>
 
       <ion-item>
-        <ion-label fixed>{{ 'NAME' | translate }}</ion-label>
-        <ion-input type="text" [(ngModel)]="account.name" name="name"></ion-input>
+        <ion-label fixed>{{ 'FNAME' | translate }}</ion-label>
+        <ion-input type="text" [(ngModel)]="account.fname" name="fname"></ion-input>
       </ion-item>
-
+      <ion-item>
+        <ion-label fixed>{{ 'SNAME' | translate }}</ion-label>
+        <ion-input type="text" [(ngModel)]="account.sname" name="sname"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>{{ 'ORG' | translate }}</ion-label>
+        <ion-input type="text" [(ngModel)]="account.org" name="org"></ion-input>
+      </ion-item>      
       <ion-item>
         <ion-label fixed>{{ 'EMAIL' | translate }}</ion-label>
         <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>

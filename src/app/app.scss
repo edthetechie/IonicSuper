@@ -14,3 +14,50 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+  .no-overflow {
+    overflow: visible;
+  }
+
+  .padding {
+    padding: 10px;
+  }
+  
+  .no-overflow {
+    overflow: auto !important;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .nav-menu {
+    cursor: pointer;
+    padding-left: -16px;
+  }
+
+.searchbar-md .searchbar-input {
+  font-size: 1.5rem;
+}
+
+.footer-button {
+  width: 100%;
+}
+
+    .spinner-container {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+
+/*
+  .toolbar-title {
+    overflow: visible;
+    margin-left: 0px;
+    text-align: left;
+  }
+
+  .toolbar-ios ion-title {
+    padding-left: 16px;
+  }
+*/

@@ -2,6 +2,9 @@
   "BACK_BUTTON_TEXT": "Back",
 
   "NAME": "Name",
+  "FNAME": "First Name",
+  "SNAME": "Last Name",
+  "ORG": "Organization",      
   "EMAIL": "Email",
   "USERNAME": "Username",
   "PASSWORD": "Password",
@@ -49,13 +52,13 @@
   "SIGNUP_ERROR": "Unable to create account. Please check your account information and try again.",
   "SIGNUP_BUTTON": "Sign up",
 
-  "LIST_MASTER_TITLE": "Items",
+  "LIST_MASTER_TITLE": "My Sources",
 
-  "ITEM_CREATE_TITLE": "New Item",
+  "ITEM_CREATE_TITLE": "Add Source",
   "ITEM_CREATE_CHOOSE_IMAGE": "Add Image",
 
-  "ITEM_NAME_PLACEHOLDER": "Name",
-  "ITEM_ABOUT_PLACEHOLDER": "About",
+  "ITEM_NAME_PLACEHOLDER": "Enter @Twittter, #Tag or RSS URL",
+  "ITEM_ABOUT_PLACEHOLDER": "Enter a tag (optional)",
 
   "DONE_BUTTON": "Done",
   "CANCEL_BUTTON": "Cancel",
@@ -63,6 +66,28 @@
 
   "CARDS_TITLE": "Social",
 
+  "CHALLENGES_TITLE": "Challenges",
+  "INDICATORS_TITLE": "My Forecasts",
+
+  "ADD_SOURCE_BUTTON": "Add Source",
+
   "SEARCH_TITLE": "Search",
-  "SEARCH_PLACEHOLDER": "Search the items list, e.g. \"Donald Duck\""
+  "SEARCH_PLACEHOLDER": "Search the items list, e.g. \"Donald Duck\"",
+  "HOME_TITLE": "Home",
+  "TAGS_TITLE": "View by Tag",
+  "SECTORS_TITLE": "View by Sector",
+  "HELP_TITLE": "Help",
+
+  "SUMMARY_TITLE": "Summary",
+
+  "SEARCH_TITLE": "Search Forecasts",
+  "SEARCH_BUTTON": "Search",
+
+  "CONTACT_TITLE": "Contact Us",
+  "CONTACT_INFO": "If you have questions, comments or a problem with our app, please fill in the box below to send us a message",
+  "CONTACT_SUBJECT": "Subject",
+  "CONTACT_MESSAGE": "Message",
+  "CONTACT_BUTTON": "Send",
+
+  "FORECASTS_LIST": "Forecasts"
 }

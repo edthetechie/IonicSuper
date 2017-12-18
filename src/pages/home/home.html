@@ -1,0 +1,48 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-title><!-- {{ 'HOME_TITLE' | translate }} --></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+    <h4 class="padding">Find the future fast by automatically scanning Sources</h4>
+
+    <ion-list no-lines>
+        <ion-item text-wrap (click)="openPage('ListMasterPage')" class="nav-menu">
+            <ion-icon ios="ios-add-circle" md="md-add-circle" item-start color="primary"></ion-icon> 
+            My Sources<br>
+            <small>@Twitter users, #Tags, RSS feeds and search terms</small>
+        </ion-item>
+        <ion-item text-wrap (click)="openPage('SearchPage')" class="nav-menu">
+            <ion-icon ios="ios-search" md="md-search" item-start color="primary"></ion-icon> 
+            Search Forecasts<br>
+            <small>Search the entire database of Forecasts</small>
+        </ion-item>
+        <ion-item text-wrap (click)="openPage('ChallengesList')" class="nav-menu">
+            <ion-icon ios="ios-flame" md="md-flame" item-start color="primary"></ion-icon> 
+            Challenges<br>
+            <small>This forecast is created by our robot (Athena) from latest analyzed daily Indicators</small>
+        </ion-item>
+        <ion-item text-wrap (click)="openPage('IndicatorsPage')" class="nav-menu">
+            <ion-icon ios="ios-star" md="md-star" item-start color="primary"></ion-icon> 
+            <a href="/#/indicators">
+                My Forecasts<br>
+                <small>Discover emerging change</small>
+            </a>
+        </ion-item>
+        <ion-item text-wrap (click)="openPage('TagsPage')" class="nav-menu">
+            <ion-icon ios="ios-pricetags" md="md-pricetags" item-start color="primary"></ion-icon>
+            View by tag
+        </ion-item>
+        <ion-item text-wrap (click)="openPage('SectorsPage')" class="nav-menu">
+            <ion-icon ios="ios-glasses" md="md-glasses" item-start color="primary"></ion-icon> 
+            View by sector
+        </ion-item>
+    </ion-list>
+
+</ion-content>

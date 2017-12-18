@@ -5,47 +5,57 @@ import { TranslateService } from '@ngx-translate/core';
 import { Config, Nav, Platform } from 'ionic-angular';
 
 import { FirstRunPage } from '../pages/pages';
-import { Settings } from '../providers/providers';
+import { User } from '../providers/providers';
+
+import { Storage } from '@ionic/storage';
 
 @Component({
-  template: `<ion-menu [content]="content">
+  template: `<ion-split-pane><ion-menu [content]="content" persistent="true">
     <ion-header>
-      <ion-toolbar>
-        <ion-title>Pages</ion-title>
+      <ion-toolbar color="primary">
+        <ion-title class="st-title">{{_clientname}}</ion-title>
       </ion-toolbar>
     </ion-header>
-
     <ion-content>
       <ion-list>
-        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          {{p.title}}
-        </button>
+        <ion-item *ngFor="let p of pages" (click)="openPage(p)" menuClose class="nav-menu">
+          <ion-icon ios="{{p.icon}}" md="{{p.iconmd}}" color="primary" item-start></ion-icon>
+            {{p.title}}
+          </ion-item>
       </ion-list>
     </ion-content>
 
   </ion-menu>
-  <ion-nav #content [root]="rootPage"></ion-nav>`
+  <ion-nav #content main [root]="rootPage"></ion-nav></ion-split-pane>`
 })
 export class MyApp {
   rootPage = FirstRunPage;
 
   @ViewChild(Nav) nav: Nav;
+  _clientname: any;
 
   pages: any[] = [
-    { title: 'Tutorial', component: 'TutorialPage' },
-    { title: 'Welcome', component: 'WelcomePage' },
-    { title: 'Tabs', component: 'TabsPage' },
-    { title: 'Cards', component: 'CardsPage' },
-    { title: 'Content', component: 'ContentPage' },
-    { title: 'Login', component: 'LoginPage' },
-    { title: 'Signup', component: 'SignupPage' },
-    { title: 'Master Detail', component: 'ListMasterPage' },
-    { title: 'Menu', component: 'MenuPage' },
-    { title: 'Settings', component: 'SettingsPage' },
-    { title: 'Search', component: 'SearchPage' }
-  ]
+    { title: 'Home', component: 'HomePage', icon: 'ios-home', iconmd: 'md-home' },
+    { title: 'My Sources', component: 'ListMasterPage', icon: 'ios-add-circle', iconmd: 'md-add-circle'  },
+    { title: 'Search', component: 'SearchPage', icon: 'ios-search', iconmd: 'md-search' },
+    { title: 'Challenges', component: 'ChallengesList', icon: 'ios-flame', iconmd: 'md-flame'  },
+    { title: 'My Forecasts', component: 'IndicatorsPage', icon: 'ios-star', iconmd: 'md-star'  },    
+    { title: 'View by Tag', component: 'TagsPage', icon: 'ios-pricetag', iconmd: 'md-pricetag'  },
+    { title: 'View by Sector', component: 'SectorsPage', icon: 'ios-glasses', iconmd: 'md-glasses'  },
+    { title: 'Help', component: 'HelpPage', icon: 'ios-help-circle', iconmd: 'md-help-circle'  },
+    { title: 'Contact Us', component: 'ContactPage', icon: 'ios-mail', iconmd: 'md-mail'  },
+    { title: 'Logout', component: 'LogoutPage', icon: 'md-log-out', iconmd: 'md-log-out'  }
+  ];
 
-  constructor(private translate: TranslateService, platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
+  constructor(
+    private translate: TranslateService, 
+    platform: Platform, 
+    private config: Config, 
+    private statusBar: StatusBar, 
+    public storage: Storage,
+    public user: User,
+    private splashScreen: SplashScreen
+  ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -53,6 +63,9 @@ export class MyApp {
       this.splashScreen.hide();
     });
     this.initTranslate();
+    this.storage.get("_clientname").then(data => {
+      this._clientname = data;
+    });;
   }
 
   initTranslate() {
@@ -75,4 +88,5 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
 }

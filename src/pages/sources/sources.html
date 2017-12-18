@@ -1,0 +1,34 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-title>{{ 'LIST_MASTER_TITLE' | translate }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addItem()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item text-wrap no-lines *ngIf="currentItems == 0">
+      No sources found
+    </ion-item>
+    <ng-container *ngFor="let item of currentItems">
+    <ion-item-sliding text-wrap no-lines *ngIf="item.TOTAL_ACTIVE_INDICATORS > 0">
+      <button ion-item (click)="openItem(item.ID, item.TITLE)">
+        <h2>{{item.TITLE}}</h2>
+        <ion-badge item-end>{{item.TOTAL_ACTIVE_INDICATORS}}</ion-badge>
+      </button>
+
+      <ion-item-options>
+        <button ion-button color="danger" (click)="deleteItem(item)">
+          {{ 'DELETE_BUTTON' | translate }}
+        </button>
+      </ion-item-options> 
+    </ion-item-sliding>
+    </ng-container>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,22 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-title>{{ 'SUMMARY_TITLE' | translate }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of currentItems" text-wrap>
+        <h2 [innerHTML]="item.text"></h2>
+    </ion-item>
+  </ion-list>
+</ion-content>

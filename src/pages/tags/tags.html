@@ -1,0 +1,22 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-title>{{ 'TAGS_TITLE' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item text-wrap no-lines *ngIf="currentItems == 0">
+      No tags found
+    </ion-item>
+    <ion-item-divider text-wrap color="light" *ngIf="currentItems?.length > 0">Found: {{currentItems?.length}}</ion-item-divider>
+    <ion-item-sliding *ngFor="let item of currentItems" text-wrap no-lines>
+      <button ion-item (click)="openItem(item.TITLE, item.TITLE)">
+        <h2>{{item.TITLE}}</h2>
+      </button>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

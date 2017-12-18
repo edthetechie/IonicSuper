@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-title>{{ 'CONTACT_TITLE' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <form (submit)="sendContactForm()">
+    <ion-list>
+      <ion-item text-wrap>
+        {{ 'CONTACT_INFO' | translate }}
+      </ion-item>
+      <ion-item>
+        <ion-label floating>{{ 'CONTACT_SUBJECT' | translate }}</ion-label>
+        <ion-input type="text" [(ngModel)]="contact.msgsubject" name="msgsubject"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>{{ 'CONTACT_MESSAGE' | translate }}</ion-label>
+        <ion-textarea #myInput id="myInput" [(ngModel)]="contact.usermessage" name="usermessage"></ion-textarea>
+      </ion-item>
+      <div padding>
+        <button ion-button color="primary" block>{{ 'CONTACT_BUTTON' | translate }}</button>
+      </div>
+
+    </ion-list>
+  </form>
+</ion-content>

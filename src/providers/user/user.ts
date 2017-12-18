@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 
 import { Api } from '../api/api';
 
+import { Storage } from '@ionic/storage';
+
 /**
  * Most apps have the concept of a User. This is a simple provider
  * with stubs for login/signup/etc.
@@ -26,20 +28,24 @@ import { Api } from '../api/api';
 @Injectable()
 export class User {
   _user: any;
+  _client: any;
+  _devicetoken: any;
+  _token: any;
 
-  constructor(public api: Api) { }
+  constructor(public storage: Storage, public api: Api) { }
 
   /**
    * Send a POST request to our login endpoint with the data
    * the user entered on the form.
    */
   login(accountInfo: any) {
-    let seq = this.api.post('login', accountInfo).share();
+    let seq = this.api.post('authenticate', accountInfo).share();
 
     seq.subscribe((res: any) => {
       // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
+      if (res.STATUS == 'success') {
         this._loggedIn(res);
+        this.api.devicetoken = res.DEVICETOKEN;
       } else {
       }
     }, err => {
@@ -54,18 +60,42 @@ export class User {
    * the user entered on the form.
    */
   signup(accountInfo: any) {
-    let seq = this.api.post('signup', accountInfo).share();
+    let dosignup = this.api.post('register', accountInfo).share();
 
-    seq.subscribe((res: any) => {
+    dosignup.subscribe((res: any) => {
+      // console.log(res);
       // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
-        this._loggedIn(res);
+      if (res.SUCCESS !== '') {
+        //console.log(accountInfo);
+        this.api.devicetoken = res.DEVICETOKEN;
+        return this.storage.set("_devicetoken", res.DEVICETOKEN);
+        //this.login(accountInfo);
+      }
+      else if (res.ERROR == 'That email address is already registered') {
+        //console.log(accountInfo);
+        this.api.devicetoken = res.DEVICETOKEN;
+        return this.storage.set("_devicetoken", res.DEVICETOKEN);
+        //this.login(accountInfo);
       }
     }, err => {
-      console.error('ERROR', err);
+      console.error('ERROR usert.ts: ', err);
     });
 
-    return seq;
+    return dosignup;
+  }
+
+  contactus(contactInfo: any) {
+    let sendcontact = this.api.post('contact', contactInfo).share();
+
+    sendcontact.subscribe((res: any) => {
+      // console.log(res);
+      // If the API returned a successful response, mark the user as logged in
+      console.log(res);
+    }, err => {
+      console.error('ERROR: ', err);
+    });
+
+    return sendcontact;
   }
 
   /**
@@ -73,12 +103,28 @@ export class User {
    */
   logout() {
     this._user = null;
+    this.storage.remove("_devicetoken");
+    this.storage.remove("_clientname");
+  }
+
+  /**
+   * Process a login/signup response to store user data
+   */
+  isLoggedIn() {
+    this.storage.get("_devicetoken").then(data => {
+      // console.log("1: " + data);
+      return data;
+    });
   }
 
   /**
    * Process a login/signup response to store user data
    */
   _loggedIn(resp) {
-    this._user = resp.user;
+    this._user = resp.DEVICETOKEN;
+    this.api.devicetoken = resp.DEVICETOKEN;
+    this.storage.set("_clientname", resp.SCANCLIENTNAME);
+    return this.storage.set("_devicetoken", resp.DEVICETOKEN);
   }
+
 }

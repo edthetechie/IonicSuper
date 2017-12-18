@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{ 'CHALLENGES_TITLE' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()" *ngIf="filteredItems?.length > 0" placeholder="Filter forecasts"></ion-searchbar>
+  <div class="spinner-container" *ngIf="searching">
+    <ion-spinner></ion-spinner>
+  </div>
+  <ion-list>
+    <ion-item text-wrap no-lines *ngIf="filteredItems == 0">
+      No challenges found
+    </ion-item>
+    <ion-item-divider text-wrap color="light"><span padding-left float-end *ngIf="filteredItems?.length > 0">Found: {{filteredItems?.length}}</span>{{ pagetitle }}</ion-item-divider>
+    <ion-item-sliding *ngFor="let item of filteredItems" text-wrap>
+      <button ion-item (click)="openItem(item.ID, item.TITLE)">
+        <h2 [innerHTML]="item.TITLE"></h2>
+      </button>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col col-12>
+          <button ion-button color="primary" class="footer-button" (click)="doExport(challengeid)">
+            Export
+          </button>  
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

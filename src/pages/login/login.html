@@ -1,15 +1,17 @@
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>{{ 'LOGIN_TITLE' | translate }}</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
 <ion-content>
+
+
   <form (submit)="doLogin()">
     <ion-list>
+
+      <ion-item text-wrap>
+        <!-- <ion-img width="100%" height="80" src="../../assets/stimg/st-logo-large.png"></ion-img> -->
+        Shaping Tomorrow is a unique, automatic, daily horizon-scanning 
+        service that uses artificial intelligence to forecast the future 
+        by extracting “Indicators” from the sources that you add. Obtain 
+        summaries that instantly pinpoint the most relevant information 
+        and link to the associated evidence.   
+      </ion-item>
 
       <ion-item>
         <ion-label fixed>{{ 'EMAIL' | translate }}</ion-label>
@@ -36,4 +38,9 @@
 
     </ion-list>
   </form>
+
+      <div padding>
+        <button ion-button color="primary" (click)="signUp()" block>{{ 'SIGNUP_BUTTON' | translate }}</button>
+      </div>
+
 </ion-content>
