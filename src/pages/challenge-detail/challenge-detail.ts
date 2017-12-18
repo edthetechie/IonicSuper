@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 
 import { Items } from '../../providers/providers';
 
-import { FirstRunPage } from '../pages';
+import { FirstRunPage, ChallengesPage } from '../pages';
 
 @IonicPage()
 @Component({
@@ -55,6 +55,9 @@ export class ChallengeDetailPage {
   }
 
   ionViewDidLoad() {
+    if (!this.navParams.get('item')) {
+      this.navCtrl.push(ChallengesPage);
+    }
     this.setFilteredItems();
     this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
         this.searching = false;

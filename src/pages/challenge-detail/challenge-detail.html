@@ -15,7 +15,7 @@
     </ion-item>
     <ion-item-divider text-wrap color="light"><span padding-left float-end *ngIf="filteredItems?.length > 0">Found: {{filteredItems?.length}}</span>{{ pagetitle }}</ion-item-divider>
     <ion-item-sliding *ngFor="let item of filteredItems" text-wrap>
-      <button ion-item (click)="openItem(item.ID, item.TITLE)">
+      <button ion-item (click)="openUrl(item.URL)">
         <h2 [innerHTML]="item.TITLE"></h2>
       </button>
     </ion-item-sliding>

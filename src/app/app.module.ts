@@ -30,7 +30,7 @@ import { SourceProvider } from '../providers/source/source';
 import { Pro } from '@ionic/pro';
 
 const IonicPro = Pro.init('e5331f54', {
-  appVersion: "1.0.0"
+  appVersion: "1.0.1"
 });
 
 @Injectable()

@@ -14,4 +14,5 @@ export const Tab1Root = 'ContentPage';
 export const Tab2Root = 'SearchPage';
 export const Tab3Root = 'ListMasterPage';
 
+export const ChallengesPage = 'ChallengesList';
 export const SignupPage = 'SignupPage';
