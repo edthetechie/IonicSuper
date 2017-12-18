@@ -104,9 +104,7 @@ export class TagsDetailPage {
 
 
     doExport(tag){
-      this.loadingexport = this.loadingController.create({
-        content: 'Loading...'
-      });
+      this.loadingexport = this.loadingController.create();
       //this.sources = this.items.query();
       this.loadingexport.present();
       this.items.tagsexportquery(tag).subscribe((resp) => {

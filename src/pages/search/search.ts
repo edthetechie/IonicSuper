@@ -4,7 +4,6 @@ import { IonicPage, NavController, ToastController, ViewController, LoadingContr
 import { MenuController } from 'ionic-angular';
 
 import { Items } from '../../providers/providers';
-import { MainPage } from '../pages';
 
 
 @IonicPage()
@@ -46,9 +45,7 @@ export class SearchPage {
   }
 
   doSearch() {
-    this.loading = this.loadingController.create({
-      content: 'Searching...'
-    });
+    this.loading = this.loadingController.create();
     this.loading.present();
     // Attempt to login in through our User service
     this.items.searchquery(this.search).subscribe((resp) => {

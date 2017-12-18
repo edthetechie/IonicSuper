@@ -21,7 +21,6 @@ export class ChallengeDetailPage {
   itemtitle: any;
   pagetitle: any;
   itemurl: any;
-  private loginErrorString: string;
   private currentItems: any;
   private filteredItems: any;
   loading: any;
