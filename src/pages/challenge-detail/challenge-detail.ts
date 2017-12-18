@@ -110,13 +110,6 @@ export class ChallengeDetailPage {
         this.loading.dismiss();
         // console.log(this.pagetitle);
       }, (err) => {
-        // Unable to log in
-        let toast = this.toastCtrl.create({
-          message: this.loginErrorString,
-          duration: 3000,
-          position: 'top'
-        });
-        toast.present();
         this.loading.dismiss();
       });   
     }
@@ -140,13 +133,6 @@ export class ChallengeDetailPage {
       alert.present();    
       this.loadingexport.dismiss();
     }, (err) => {
-      // Unable to log in
-      let toast = this.toastCtrl.create({
-        message: err.statusText,
-        duration: 3000,
-        position: 'top'
-      });
-      toast.present();
       this.loadingexport.dismiss();
       if (err.statusText == 'Not Authenticated - No Device Token') {
         this.navCtrl.push(FirstRunPage);

@@ -70,13 +70,6 @@ export class ListMasterPage {
       this.currentItems = resp;
       this.loadingsources.dismiss();
     }, (err) => {
-      // Unable to log in
-      let toast = this.toastCtrl.create({
-        message: err.statusText,
-        duration: 3000,
-        position: 'top'
-      });
-      toast.present();
       this.loadingsources.dismiss();
       if (err.statusText == 'Not Authenticated - No Device Token') {
         this.navCtrl.push(FirstRunPage);

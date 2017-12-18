@@ -53,13 +53,7 @@ private currentItems: any;
         //console.log(resp);
         this.loading.dismiss();
       }, (err) => {
-        // Unable to log in
-        let toast = this.toastCtrl.create({
-          message: err.statusText,
-          duration: 3000,
-          position: 'top'
-        });
-        toast.present();
+
         this.loading.dismiss();
         if (err.statusText == 'Not Authenticated - No Device Token') {
           this.navCtrl.push(FirstRunPage);
@@ -75,13 +69,7 @@ private currentItems: any;
         //console.log(resp);
         this.loading.dismiss();
       }, (err) => {
-        // Unable to log in
-        let toast = this.toastCtrl.create({
-          message: err.statusText,
-          duration: 3000,
-          position: 'top'
-        });
-        toast.present();
+
         this.loading.dismiss();
         if (err.statusText == 'Not Authenticated - No Device Token') {
           this.navCtrl.push(FirstRunPage);
@@ -97,13 +85,7 @@ private currentItems: any;
         //console.log(resp);
         this.loading.dismiss();
       }, (err) => {
-        // Unable to log in
-        let toast = this.toastCtrl.create({
-          message: err.statusText,
-          duration: 3000,
-          position: 'top'
-        });
-        toast.present();
+
         this.loading.dismiss();
         if (err.statusText == 'Not Authenticated - No Device Token') {
           this.navCtrl.push(FirstRunPage);
@@ -119,13 +101,7 @@ private currentItems: any;
         //console.log(resp);
         this.loading.dismiss();
       }, (err) => {
-        // Unable to log in
-        let toast = this.toastCtrl.create({
-          message: err.statusText,
-          duration: 3000,
-          position: 'top'
-        });
-        toast.present();
+
         this.loading.dismiss();
         if (err.statusText == 'Not Authenticated - No Device Token') {
           this.navCtrl.push(FirstRunPage);
