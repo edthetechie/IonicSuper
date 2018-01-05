@@ -20,12 +20,12 @@
     "@angular/http": "4.4.3",
     "@angular/platform-browser": "4.4.3",
     "@angular/platform-browser-dynamic": "4.4.3",
-    "@ionic-native/browser-tab": "^4.3.2",
-    "@ionic-native/camera": "4.3.1",
-    "@ionic-native/core": "4.3.2",
-    "@ionic-native/in-app-browser": "^4.4.2",
-    "@ionic-native/splash-screen": "4.3.2",
-    "@ionic-native/status-bar": "4.3.2",
+    "@ionic-native/browser-tab": "4.5.2",
+    "@ionic-native/camera": "4.5.2",
+    "@ionic-native/core": "4.5.2",
+    "@ionic-native/in-app-browser": "4.5.2",
+    "@ionic-native/splash-screen": "4.5.2",
+    "@ionic-native/status-bar": "4.5.2",
     "@ionic/pro": "^1.0.16",
     "@ionic/storage": "2.0.1",
     "@ngx-translate/core": "8.0.0",
@@ -38,7 +38,7 @@
     "zone.js": "0.8.18"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "3.0.1",
+    "@ionic/app-scripts": "3.1.7",
     "typescript": "2.3.4"
   },
   "description": "An Ionic project"
